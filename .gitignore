@@ -1,0 +1,124 @@
+# Ignore build outputs and temporary files
+bin/
+obj/
+out/
+artifacts/
+
+# Ignore runtime-generated files
+*.log
+*.vspscc
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio specific folders
+.vs/
+.vscode/
+.vscode/**
+
+# Ignore Rider and IntelliJ project files
+.idea/
+.idea/**
+
+# Ignore user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.sln.bindings.json
+*.cache
+*.generated
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+._*
+
+# Ignore NuGet package directories
+**/packages/
+!**/packages/build/
+!**/packages/repositories.config
+
+# Ignore auto-generated files from dotnet commands
+project.lock.json
+project.fragment.lock.json
+
+# Ignore configuration and settings files
+appsettings.Development.json
+appsettings.local.json
+secrets.json
+local.settings.json
+
+# Ignore logs
+logs/
+*.log
+logs/**
+
+# Ignore wwwroot static files (optional)
+wwwroot/lib/*
+!wwwroot/lib/.gitkeep
+
+# Ignore auto-generated assembly info
+**/Properties/AssemblyInfo.cs
+
+# Ignore other build directories
+**/build/
+**/out/
+
+# Ignore npm packages and generated files
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignore JetBrains Rider project files
+.idea/
+.idea/**
+
+# Ignore custom tools
+**/.localhistory
+**/.history
+**/.tmp
+
+# Ignore Visual Studio Code workspace settings
+.vscode/
+.vscode/**
+
+# Ignore package and project dependency files
+project.lock.json
+project.fragment.lock.json
+
+# Ignore Azure Functions local settings file
+local.settings.json
+
+# Ignore user secrets (ASP.NET Core)
+**/appsettings.Development.json
+**/appsettings.local.json
+**/secrets.json
+
+# Ignore code coverage files
+coverage/
+coverage.opencover.xml
+coverage.cobertura.xml
+
+# Ignore generated migration files for Entity Framework Core
+Migrations/
+
+# Ignore generated bundle and minification files
+**/*.bundle.*
+**/*.min.*
+
+# Ignore temporary files and directories
+**/tmp/
+**/temp/
+
+# Ignore configuration files for custom tools
+*.code-workspace
+.vs/
+
+# Ignore Rider settings
+.idea/.idea/
+.idea/`
