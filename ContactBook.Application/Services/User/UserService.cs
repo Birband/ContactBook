@@ -32,13 +32,13 @@ public class UserService : IUserService
         }
 
         // Create token
-        var token = _jwtTokenGenerator.GenerateToken(user.Id, request.Username, request.Email);
+        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Username, user.Email);
 
         return new UserResponseDto
         {
             Id = user.Id,
-            Username = request.Username,
-            Email = request.Email,
+            Username = user.Username,
+            Email = user.Email,
             Token = token
         };
     }
