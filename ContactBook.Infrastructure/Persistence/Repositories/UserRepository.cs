@@ -1,9 +1,8 @@
 using ContactBook.Domain.Entities;
 using ContactBook.Application.Common.Interfaces.Persistence;
-using ContactBook.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContactBook.Infrastructure.Persistence;
+namespace ContactBook.Infrastructure.Persistence.Repositories;
 
 public class UserRepository : IUserRepository
 {

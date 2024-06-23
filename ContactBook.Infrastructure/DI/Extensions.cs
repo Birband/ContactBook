@@ -3,11 +3,11 @@ using ContactBook.Application.Common.Interfaces.Authentication;
 using ContactBook.Infrastructure.Authentication;
 using Microsoft.Extensions.Configuration;
 using ContactBook.Application.Common.Interfaces.Persistence;
-using ContactBook.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using System.Text;
+using ContactBook.Infrastructure.Persistence.Repositories;
 
 namespace ContactBook.Infrastructure.DI;
 

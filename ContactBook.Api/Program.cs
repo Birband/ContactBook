@@ -1,8 +1,8 @@
 using ContactBook.Application.Services.User;
 using ContactBook.Infrastructure.DI;
-using ContactBook.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using ContactBook.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 {

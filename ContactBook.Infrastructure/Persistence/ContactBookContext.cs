@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace ContactBook.Infrastructure.Data;
+namespace ContactBook.Infrastructure.Persistence;
 
 public class ContactBookDbContext : DbContext
 {
