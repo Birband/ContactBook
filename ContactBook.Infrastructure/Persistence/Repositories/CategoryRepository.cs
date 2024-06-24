@@ -30,7 +30,10 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task<IEnumerable<Category>> GetCategoriesAsync()
     {
-        return await _context.Categories.ToListAsync();
+        // Get also their subcategories
+        return await _context.Categories
+            .Include(c => c.Subcategories)
+            .ToListAsync();
     }
 
     public async Task UpdateCategoryAsync(Category category)

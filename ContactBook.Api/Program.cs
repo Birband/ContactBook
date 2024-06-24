@@ -50,7 +50,6 @@ var app = builder.Build();
     {
         app.UseSwagger();
         app.UseSwaggerUI();        
-        app.ApplyMigration();
     }
 
     app.UseMiddleware<ErrorHandler>();
