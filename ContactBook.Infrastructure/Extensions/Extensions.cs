@@ -13,7 +13,7 @@ using ContactBook.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using ContactBook.Application.Services.User;
 
-namespace ContactBook.Infrastructure.DI;
+namespace ContactBook.Infrastructure.Extensions;
 
 public static class Extensions
 {
@@ -26,7 +26,7 @@ public static class Extensions
         {
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
-        
+
         return services;
     }
 
@@ -37,7 +37,7 @@ public static class Extensions
         services.AddSingleton(Options.Create(jwtConfig));
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters 
+            .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
                 ValidateAudience = true,

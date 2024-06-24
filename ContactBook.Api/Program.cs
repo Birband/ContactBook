@@ -1,7 +1,7 @@
 using ContactBook.Api.Middleware;
 using ContactBook.Application.Services.User;
 using ContactBook.Domain.Entities;
-using ContactBook.Infrastructure.DI;
+using ContactBook.Infrastructure.Extensions;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
