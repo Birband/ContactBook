@@ -1,4 +1,5 @@
 using ContactBook.Api.Middleware;
+using ContactBook.Application.Common.Interfaces.Persistence;
 using ContactBook.Application.Services.Users;
 using ContactBook.Domain.Entities;
 using ContactBook.Infrastructure.Extensions;
@@ -9,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddInfrastructure(builder.Configuration);
-
+    builder.Services.AddControllersWithViews()
+        .AddNewtonsoftJson(options =>
+        {
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        });
     if (builder.Environment.IsDevelopment())
     {
         builder.Services.AddSwaggerGen(options =>
