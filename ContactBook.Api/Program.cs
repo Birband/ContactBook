@@ -57,6 +57,7 @@ var app = builder.Build();
         app.UseSwaggerUI();        
     }
 
+    app.UseMiddleware<ErrorHandler>();
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
