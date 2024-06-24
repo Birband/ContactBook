@@ -2,12 +2,12 @@ using ContactBook.Application.Common.Interfaces.Authentication;
 using ContactBook.Application.Common.Interfaces.Persistence;
 using ContactBook.Domain.Entities;
 using ContactBook.Application.DTOs;
-using ContactBook.Application.Common.Security; 
+using ContactBook.Application.Common.Security;
 using ContactBook.Application.Common.Validators;
 using ContactBook.Application.Common.Exceptions;
 using ContactBook.Application.Common.Models;
 
-namespace ContactBook.Application.Services.User;
+namespace ContactBook.Application.Services.Users;
 
 public class UserService : IUserService
 {
@@ -21,7 +21,7 @@ public class UserService : IUserService
     }
 
     public async Task<UserResponseDto?> LoginAsync(UserLoginDto request)
-    {   
+    {
         // Validate user input
         var emailValidCheck = EmailValidator.ValidateEmail(request.Email);
         if (!emailValidCheck.IsValid)
@@ -83,12 +83,12 @@ public class UserService : IUserService
         }
 
         // Create user
-        var user = new Domain.Entities.User
+        var user = new User
         {
             Username = request.Username,
             Email = request.Email,
             Password = request.Password
-        }; 
+        };
 
         // Check if password is correct
         if (request.Password != request.ConfirmPassword)

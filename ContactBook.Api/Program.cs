@@ -1,5 +1,5 @@
 using ContactBook.Api.Middleware;
-using ContactBook.Application.Services.User;
+using ContactBook.Application.Services.Users;
 using ContactBook.Domain.Entities;
 using ContactBook.Infrastructure.Extensions;
 using Microsoft.OpenApi.Models;

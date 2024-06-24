@@ -1,6 +1,6 @@
 using ContactBook.Application.DTOs;
 
-namespace ContactBook.Application.Services.User;
+namespace ContactBook.Application.Services.Users;
 
 public interface IUserService
 {
