@@ -15,7 +15,7 @@ using ContactBook.Application.Services.User;
 
 namespace ContactBook.Infrastructure.Extensions;
 
-public static class Extensions
+public static class InfrastructureExtension
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
