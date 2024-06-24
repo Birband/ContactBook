@@ -2,6 +2,10 @@ using ContactBook.Application.Common.Interfaces.Authentication;
 using ContactBook.Application.Common.Interfaces.Persistence;
 using ContactBook.Domain.Entities;
 using ContactBook.Application.DTOs;
+using ContactBook.Application.Common.Security; 
+using ContactBook.Application.Common.Validators;
+using ContactBook.Application.Common.Exceptions;
+using ContactBook.Application.Common.Models;
 
 namespace ContactBook.Application.Services.User;
 
@@ -18,6 +22,19 @@ public class UserService : IUserService
 
     public async Task<UserResponseDto?> LoginAsync(UserLoginDto request)
     {   
+        // Validate user input
+        var emailValidCheck = EmailValidator.ValidateEmail(request.Email);
+        if (!emailValidCheck.IsValid)
+        {
+            throw new ValidationException(emailValidCheck);
+        }
+
+        // Check if password is empty
+        if (string.IsNullOrWhiteSpace(request.Password))
+        {
+            throw new Exception("Password cannot be empty");
+        }
+
         // Check if user exists
         var user = await _userRepository.GetUserByEmailAsync(request.Email);
         if (user is null)
@@ -26,7 +43,7 @@ public class UserService : IUserService
         }
 
         // Check if password is correct
-        if (user.Password != request.Password)
+        if (!PasswordHash.VerifyPassword(user.Password, request.Password))
         {
             throw new Exception("Password is incorrect");
         }
@@ -45,6 +62,20 @@ public class UserService : IUserService
 
     public async Task<UserResponseDto?> RegisterAsync(UserRegisterDto request)
     {
+        // Validate user input
+        var emailValidCheck = EmailValidator.ValidateEmail(request.Email);
+        if (!emailValidCheck.IsValid)
+        {
+            throw new ValidationException(emailValidCheck);
+        }
+
+        var passwordValidCheck = PasswordValidator.ValidatePassword(request.Password);
+
+        if (!passwordValidCheck.IsValid)
+        {
+            throw new ValidationException(passwordValidCheck);
+        }
+
         // Check if user exists
         if (await _userRepository.GetUserByEmailAsync(request.Email) is not null)
         {
@@ -65,8 +96,14 @@ public class UserService : IUserService
             throw new Exception("Passwords do not match");
         }
 
+        // Hash password
+        user.Password = PasswordHash.HashPassword(user.Password);
+
         // Add user to database
         await _userRepository.AddUserAsync(user);
+
+        // Get user from database
+        user = await _userRepository.GetUserByEmailAsync(request.Email);
 
         // Create token
         var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Username, user.Email);
