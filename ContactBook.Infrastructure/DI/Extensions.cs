@@ -8,6 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using System.Text;
 using ContactBook.Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
+using ContactBook.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
+using ContactBook.Application.Services.User;
 
 namespace ContactBook.Infrastructure.DI;
 
@@ -16,7 +20,13 @@ public static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuth(configuration);
+        services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddDbContext<ContactBookDbContext>(options =>
+        {
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+        });
+        
         return services;
     }
 

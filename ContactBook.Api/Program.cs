@@ -1,19 +1,14 @@
+using ContactBook.Api.Middleware;
 using ContactBook.Application.Services.User;
+using ContactBook.Domain.Entities;
 using ContactBook.Infrastructure.DI;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using ContactBook.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddControllers();
-    builder.Services.AddScoped<IUserService, UserService>();
+    builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddInfrastructure(builder.Configuration);
-
-    builder.Services.AddDbContext<ContactBookDbContext>(options =>
-    {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-    });
 
     if (builder.Environment.IsDevelopment())
     {
