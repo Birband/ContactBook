@@ -11,7 +11,7 @@ using ContactBook.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ContactBook.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
-using ContactBook.Application.Services.User;
+using ContactBook.Application.Services.Users;
 
 namespace ContactBook.Infrastructure.Extensions;
 
@@ -20,13 +20,22 @@ public static class InfrastructureExtension
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuth(configuration);
+        services.AddPersistence(configuration);
         services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IUserRepository, UserRepository>();
         services.AddDbContext<ContactBookDbContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
 
+        return services;
+    }
+
+    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IContactRepository, ContactRepository>();
+        services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
         return services;
     }
 
