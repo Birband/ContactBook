@@ -12,7 +12,8 @@ export class EditContactComponent implements OnInit {
   contactForm!: FormGroup;
   categories: any[] = [];
   contactEmail: string = '';
-
+  errors: any[] = [];
+  
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
@@ -91,7 +92,7 @@ export class EditContactComponent implements OnInit {
         this.router.navigate(['/contacts']);
       },
       (error) => {
-        console.error('Error updating contact: ', error);
+        this.errors = error.error.error;
       }
     );
   }

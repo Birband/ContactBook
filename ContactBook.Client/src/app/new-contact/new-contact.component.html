@@ -87,12 +87,23 @@
             <mat-error *ngIf="contactForm.get('password')?.hasError('required')">
               Password is required
             </mat-error>
+
           </mat-form-field>
-  
+          <div *ngIf="errors.length > 0">
+            <mat-card>
+              <mat-card-content>
+                <ul>
+                  <li class="errors" *ngFor="let error of errors">{{ error }}</li>
+                </ul>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
           <div class="button-group">
             <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid">Submit</button>
           </div>
         </form>
+        
       </mat-card-content>
     </mat-card>
   </div>

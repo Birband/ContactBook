@@ -11,6 +11,7 @@ import { ApiService } from '../services/api/api.service';
 export class NewContactComponent implements OnInit {
   contactForm!: FormGroup;
   categories: any[] = [];
+  errors: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -57,7 +58,7 @@ export class NewContactComponent implements OnInit {
       this.router.navigate(['/contacts']);
     },
     (error) => {
-      console.error('Error creating contact: ', error);
+      this.errors = error.error.error;
     });
   }
 }
