@@ -45,7 +45,7 @@ public class UserService : IUserService
         // Check if password is correct
         if (!PasswordHash.VerifyPassword(user.Password, request.Password))
         {
-            throw new Exception("Password is incorrect");
+            throw new Exception("Password or email is incorrect");
         }
 
         // Create token

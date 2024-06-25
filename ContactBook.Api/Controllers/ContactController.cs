@@ -2,6 +2,7 @@ using AutoMapper;
 using ContactBook.Application.DTOs;
 using ContactBook.Application.Services.Contacts;
 using ContactBook.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactBook.Api.Controllers;
@@ -39,6 +40,7 @@ public class ContactController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> AddContact([FromBody] CreateContactDto contact)
     {
         await _contactService.AddContactAsync(_mapper.Map<Contact>(contact));
@@ -46,6 +48,7 @@ public class ContactController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize]
     public async Task<IActionResult> UpdateContact([FromBody] CreateContactDto contact)
     {
         await _contactService.UpdateContactAsync(_mapper.Map<Contact>(contact));
@@ -53,6 +56,7 @@ public class ContactController : ControllerBase
     }
 
     [HttpDelete("{email}")]
+    [Authorize]
     public async Task<IActionResult> DeleteContact(string email)
     {
         await _contactService.DeleteContactAsync(email);
