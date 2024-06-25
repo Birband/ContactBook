@@ -29,5 +29,8 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/user/register`, { email, password, confirmPassword });
   }
 
+  fetchCategories(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/category/all`);
+  }
 
 }
