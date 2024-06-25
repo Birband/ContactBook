@@ -11,7 +11,7 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
-  errorMessage: string = '';
+  errorMessage: string[] = [];
 
   constructor(private apiService: ApiService, private router: Router) {}
 

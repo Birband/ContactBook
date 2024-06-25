@@ -18,7 +18,11 @@
             <input matInput type="password" placeholder="Enter your password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit">Register</button>
-        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <div *ngIf="errorMessage?.length" class="error-message">
+            <div *ngFor="let message of errorMessage">
+              {{ message }}
+            </div>
+          </div>
         </form>
       </mat-card-content>
     </mat-card>
