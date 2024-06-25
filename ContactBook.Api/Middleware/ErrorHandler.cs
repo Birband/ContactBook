@@ -40,7 +40,8 @@ public class ErrorHandler
             var result = JsonSerializer.Serialize(new { error = exceptionVal.Errors });
             return context.Response.WriteAsync(result);
         } else {
-            var result = JsonSerializer.Serialize(new { error = exception.Message });
+            var message = exception.Message;
+            var result = JsonSerializer.Serialize(new { error = new string[] { message } });
             return context.Response.WriteAsync(result);
         }
 
