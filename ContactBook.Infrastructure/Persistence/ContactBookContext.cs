@@ -20,6 +20,15 @@ public class ContactBookDbContext : DbContext
             .WithOne(s => s.Category)
             .HasForeignKey(s => s.CategoryId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // user and contact, set email as uniques
+        modelBuilder.Entity<Domain.Entities.User>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+
+        modelBuilder.Entity<Domain.Entities.Contact>()
+            .HasIndex(c => c.Email)
+            .IsUnique();
         
         List<Domain.Entities.Category> users = new()
         {
