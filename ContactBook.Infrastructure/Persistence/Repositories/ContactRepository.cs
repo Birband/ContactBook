@@ -40,7 +40,17 @@ public class ContactRepository : IContactRepository
 
     public async Task UpdateContactAsync(Contact contact)
     {
-        _context.Contacts.Update(contact);
+        var existingContact = await _context.Contacts.FirstOrDefaultAsync(c => c.Email == contact.Email);
+        if (existingContact != null)
+        {
+            existingContact.FirstName = contact.FirstName;
+            existingContact.LastName = contact.LastName;
+            existingContact.PhoneNumber = contact.PhoneNumber;
+            existingContact.BirthDate = contact.BirthDate;
+            existingContact.Category = contact.Category;
+            existingContact.Subcategory = contact.Subcategory;
+            existingContact.Password = contact.Password;
+        }
         await _context.SaveChangesAsync();
     }
 }
