@@ -21,6 +21,21 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/contact/${email}`);
   }
   
+  createContact(contactForm: any): Observable<any> {
+    var contact = {
+      firstName: contactForm.firstName,
+      lastName: contactForm.lastName,
+      email: contactForm.email,
+      phoneNumber: contactForm.phoneNumber,
+      address: contactForm.address,
+      birthday: contactForm.birthday,
+      category: contactForm.category.name,
+      subcategory: contactForm.subcategory.name,
+      password: contactForm.password
+    };
+    return this.http.post(`${this.apiUrl}/contact`, contact);
+  }
+
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/user/login`, { email, password });
   }

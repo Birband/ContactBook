@@ -49,5 +49,15 @@ export class NewContactComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.contactForm.invalid) {
+      return;
+    }
+
+    this.apiService.createContact(this.contactForm.value).subscribe(() => {
+      this.router.navigate(['/contacts']);
+    },
+    (error) => {
+      console.error('Error creating contact: ', error);
+    });
   }
 }
