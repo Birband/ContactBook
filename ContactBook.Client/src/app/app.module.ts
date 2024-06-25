@@ -23,7 +23,7 @@ import { NewContactComponent } from './new-contact/new-contact.component';
     LoginComponent,
     RegisterComponent,
     ContactDetailComponent,
-    RegisterComponent
+    NewContactComponent
   ],
   imports: [
     BrowserModule,
