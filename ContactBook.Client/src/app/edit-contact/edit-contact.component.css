@@ -1,0 +1,46 @@
+/* Container for the form */
+.edit-contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5; /* Light grey background */
+    min-height: 100vh; /* Full height to center vertically */
+  }
+  
+  /* Style the card */
+  mat-card {
+    max-width: 600px; /* Limit width for better readability */
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Title styling */
+  mat-card-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Content area within the card */
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form fields */
+  }
+  
+  /* Form fields full width */
+  mat-form-field {
+    width: 100%;
+  }
+  
+  /* Button group styling */
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  button[mat-raised-button] {
+    margin-left: 10px; /* Space between buttons */
+  }
+  

@@ -57,14 +57,21 @@ export class EditContactComponent implements OnInit {
   private loadContactDetails(): void {
     this.apiService.fetchContact(this.contactEmail).subscribe(
       (contact: any) => {
+        // find category with this name and set it as selected
+        var cat = this.categories.find((c) => c.name === contact.category);
+        
+        var subcat = cat.subcategories.find((sc: any) => sc.name === contact.subcategory);
+        if (cat.subcategories.length == 0) {
+          subcat = contact.subcategory;
+        }
         this.contactForm.patchValue({
           firstName: contact.firstName,
           lastName: contact.lastName,
           email: contact.email,
           phoneNumber: contact.phoneNumber,
           birthDate: new Date(contact.birthDate),
-          category: contact.category,
-          subcategory: contact.subcategory
+          category: cat,
+          subcategory: subcat
         });
       },
       (error) => {
