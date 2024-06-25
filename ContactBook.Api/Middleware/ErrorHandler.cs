@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ContactBook.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -30,10 +31,18 @@ public class ErrorHandler
 
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var code = HttpStatusCode.InternalServerError;
-        var result = JsonSerializer.Serialize(new { error = exception.Message });
+        var code = HttpStatusCode.InternalServerError;       
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = (int)code;
-        return context.Response.WriteAsync(result);
+
+        if (exception is ValidationException exceptionVal)
+        {
+            var result = JsonSerializer.Serialize(new { error = exceptionVal.Errors });
+            return context.Response.WriteAsync(result);
+        } else {
+            var result = JsonSerializer.Serialize(new { error = exception.Message });
+            return context.Response.WriteAsync(result);
+        }
+
     }
 }
