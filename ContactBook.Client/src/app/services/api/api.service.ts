@@ -36,6 +36,25 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/contact`, contact);
   }
 
+  updateContact(contactForm: any): Observable<any> {
+    var contact = {
+      firstName: contactForm.firstName,
+      lastName: contactForm.lastName,
+      email: contactForm.email,
+      phoneNumber: contactForm.phoneNumber,
+      address: contactForm.address,
+      birthday: contactForm.birthday,
+      category: contactForm.category.name,
+      subcategory: contactForm.subcategory.name,
+      password: contactForm.password
+    };
+    return this.http.put(`${this.apiUrl}/contact`, contact);
+  }
+
+  deleteContact(email: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/contact/${email}`);
+  }
+
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/user/login`, { email, password });
   }
