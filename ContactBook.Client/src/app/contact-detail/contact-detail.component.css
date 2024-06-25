@@ -1,0 +1,13 @@
+.contact-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  mat-card {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+  }
+  

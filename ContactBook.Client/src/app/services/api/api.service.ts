@@ -17,6 +17,10 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/contact/all`);
   }
 
+  fetchContact(email: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/contact/${email}`);
+  }
+  
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/user/login`, { email, password });
   }
