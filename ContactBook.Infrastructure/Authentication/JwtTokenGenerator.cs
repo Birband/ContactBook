@@ -7,6 +7,9 @@ using System.Text;
 
 namespace ContactBook.Infrastructure.Authentication;
 
+/// <summary>
+/// Implementation of IJwtTokenGenerator
+/// </summary>
 public class JwtTokenGenerator : IJwtTokenGenerator
 {
     private readonly JwtConfig _jwtConfig;
@@ -16,6 +19,12 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _jwtConfig = jwtConfig.Value;
     }
 
+    /// <summary>
+    /// Generate JWT token for user
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="email"></param>
+    /// <returns></returns>
     public string GenerateToken(Guid userId, string email)
     {
         var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(

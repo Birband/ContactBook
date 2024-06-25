@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactBook.Api.Controllers;
 
+/// <summary>
+/// Controller for managing categories
+/// </summary>
+/// <response code="401">If the user is not authenticated</response>
 [ApiController]
 [Route("api/category")]
 public class CategoryController : ControllerBase
@@ -22,6 +26,9 @@ public class CategoryController : ControllerBase
         _hostEnvironment = hostEnvironment;
     }
 
+    /// <summary>
+    /// Get all categories
+    /// </summary>
     [HttpGet("all")]
     public async Task<IActionResult> GetCategories()
     {
@@ -29,6 +36,11 @@ public class CategoryController : ControllerBase
         return Ok(categories);
     }
 
+
+    /// <summary>
+    /// Add a new category
+    /// </summary>
+    /// <param name="category"></param>
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> AddCategory([FromBody] CategoryDto category)
@@ -38,6 +50,11 @@ public class CategoryController : ControllerBase
         return Ok();
     }
 
+
+    /// <summary>
+    /// Update a category
+    /// </summary>
+    /// <param name="category"></param>
     [HttpPut]
     [Authorize]
     public async Task<IActionResult> UpdateCategory([FromBody] CategoryDto category)
@@ -47,6 +64,10 @@ public class CategoryController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Delete a category
+    /// </summary>
+    /// <param name="id"></param>
     [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> DeleteCategory(Guid id)

@@ -7,6 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace ContactBook.Application.Services.Contacts;
 
+/// <summary>
+/// Contact service
+/// </summary>
 public class ContactService : IContactService
 {
     private readonly IContactRepository _contactRepository;
@@ -16,11 +19,20 @@ public class ContactService : IContactService
         _contactRepository = contactRepository;
     }
 
+    /// <summary>
+    /// Get all contacts
+    /// </summary>
+    /// <returns></returns>
     public async Task<IEnumerable<Contact>> GetContactsAsync()
     {
         return await _contactRepository.GetContactsAsync();
     }
 
+    /// <summary>
+    /// Get contact by email
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
     public async Task<Contact?> GetContactByEmailAsync(string email)
     {
 
@@ -28,6 +40,13 @@ public class ContactService : IContactService
 
     }
 
+    /// <summary>
+    /// Add a new contact
+    /// </summary>
+    /// <param name="contact"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="ValidationException"></exception>
     public async Task AddContactAsync(Contact contact)
     {
         // Check if contact already exists
@@ -75,6 +94,13 @@ public class ContactService : IContactService
         await _contactRepository.AddContactAsync(contact);
     }
 
+    /// <summary>
+    /// Update a contact
+    /// </summary>
+    /// <param name="contact"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="ValidationException"></exception>
     public async Task UpdateContactAsync(Contact contact)
     {
         // Check if contact already exists
@@ -126,6 +152,12 @@ public class ContactService : IContactService
         await _contactRepository.UpdateContactAsync(contact);
     }
 
+    /// <summary>
+    /// Delete a contact
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public async Task DeleteContactAsync(string email)
     {
         var existingContact = await _contactRepository.GetContactByEmailAsync(email);

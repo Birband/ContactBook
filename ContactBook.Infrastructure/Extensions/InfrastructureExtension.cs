@@ -19,8 +19,17 @@ using ContactBook.Application.Common.Extensions;
 
 namespace ContactBook.Infrastructure.Extensions;
 
+/// <summary>
+/// Extension methods for adding services to the DI container
+/// </summary>
 public static class InfrastructureExtension
 {
+    /// <summary>
+    /// Add basic infrastructure services such as authentication, persistence, and automapper
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <returns></returns>
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuth(configuration);
@@ -34,6 +43,12 @@ public static class InfrastructureExtension
         return services;
     }
 
+    /// <summary>
+    /// Add persistence services such as repositories and services
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <returns></returns>
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUserService, UserService>();
@@ -48,6 +63,12 @@ public static class InfrastructureExtension
         return services;
     }
 
+    /// <summary>
+    /// Add authentication services such as JWT token generation and validation
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <returns></returns>
     public static IServiceCollection AddAuth(this IServiceCollection services, IConfiguration configuration)
     {
         var jwtConfig = new JwtConfig();

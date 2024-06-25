@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 
 namespace ContactBook.Api.Middleware;
 
+/// <summary>
+/// Middleware for handling normal exceptions and ValidationException from the application
+/// </summary>
 public class ErrorHandler
 {
     private readonly RequestDelegate _next;

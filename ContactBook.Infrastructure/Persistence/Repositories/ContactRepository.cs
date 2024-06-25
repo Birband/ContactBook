@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ContactBook.Infrastructure.Persistence.Repositories;
 
+/// <summary>
+/// Contact repository
+/// </summary>
 public class ContactRepository : IContactRepository
 {
     private readonly ContactBookDbContext _context;
@@ -18,6 +21,11 @@ public class ContactRepository : IContactRepository
         await _context.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// Delete a contact from the database
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
     public async Task DeleteContactAsync(string email)
     {
         var contact = await _context.Contacts.FirstOrDefaultAsync(c => c.Email == email);
@@ -28,16 +36,30 @@ public class ContactRepository : IContactRepository
         }
     }
 
+    /// <summary>
+    /// Get a contact by email
+    /// </summary>
+    /// <param name="email"></param>
+    /// <returns></returns>
     public async Task<Contact?> GetContactByEmailAsync(string email)
     {
         return await _context.Contacts.FirstOrDefaultAsync(c => c.Email == email);
     }
 
+    /// <summary>
+    /// Get all contacts
+    /// </summary>
+    /// <returns></returns>
     public async Task<IEnumerable<Contact>> GetContactsAsync()
     {
         return await _context.Contacts.ToListAsync();
     }
 
+    /// <summary>
+    /// Update a contact in the database
+    /// </summary>
+    /// <param name="contact"></param>
+    /// <returns></returns>
     public async Task UpdateContactAsync(Contact contact)
     {
         var existingContact = await _context.Contacts.FirstOrDefaultAsync(c => c.Email == contact.Email);

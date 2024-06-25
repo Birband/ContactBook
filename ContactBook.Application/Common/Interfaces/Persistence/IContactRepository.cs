@@ -4,7 +4,6 @@ namespace ContactBook.Infrastructure.Persistence.Repositories;
 
 public interface IContactRepository
 {
-    // add, delete, update, get contacts, get contact by id
     Task<IEnumerable<Contact>> GetContactsAsync();
     Task<Contact?> GetContactByEmailAsync(string id);
     Task AddContactAsync(Contact contact);

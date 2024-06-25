@@ -4,6 +4,10 @@ using ContactBook.Application.Services.Users;
 
 namespace ContactBook.Api.Controllers;
 
+/// <summary>
+/// Controller for managing users 
+/// </summary>
+/// <response code="401">If the user is not authenticated</response>
 [ApiController]
 [Route("api/user")]
 public class UserController : ControllerBase

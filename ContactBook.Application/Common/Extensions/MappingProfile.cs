@@ -4,6 +4,9 @@ using ContactBook.Domain.Entities;
 
 namespace ContactBook.Application.Common.Extensions;
 
+/// <summary>
+/// Mapping profile for AutoMapper
+/// </summary>
 public class MappingProfile : Profile
 {
     public MappingProfile()

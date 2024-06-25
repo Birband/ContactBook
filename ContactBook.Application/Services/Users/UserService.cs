@@ -9,6 +9,9 @@ using ContactBook.Application.Common.Models;
 
 namespace ContactBook.Application.Services.Users;
 
+/// <summary>
+/// User service
+/// </summary>
 public class UserService : IUserService
 {
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
@@ -20,6 +23,13 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
+    /// <summary>
+    /// Login user
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    /// <exception cref="ValidationException"></exception>
+    /// <exception cref="Exception"></exception>
     public async Task<UserResponseDto?> LoginAsync(UserLoginDto request)
     {
         // Validate user input
@@ -58,6 +68,13 @@ public class UserService : IUserService
         };
     }
 
+    /// <summary>
+    /// Register user
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    /// <exception cref="ValidationException"></exception>
+    /// <exception cref="Exception"></exception>
     public async Task<UserResponseDto?> RegisterAsync(UserRegisterDto request)
     {
         // Validate user input
