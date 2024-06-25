@@ -4,18 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
-import { ContactsComponent } from './contacts/contacts.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { ContactDetailComponent } from './contact-detail/contact-detail.component';
-import { NewContactComponent } from './new-contact/new-contact.component';
+import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
+import { NewContactComponent } from './components/new-contact/new-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
-import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 
 @NgModule({
   declarations: [

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactsComponent } from './contacts/contacts.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ContactDetailComponent } from './contact-detail/contact-detail.component';
-import { NewContactComponent } from './new-contact/new-contact.component';
-import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ContactDetailComponent } from './components/contact-detail/contact-detail.component';
+import { NewContactComponent } from './components/new-contact/new-contact.component';
+import { EditContactComponent } from './components/edit-contact/edit-contact.component';
 
 const routes: Routes = [
   { path: 'contacts', component: ContactsComponent },
