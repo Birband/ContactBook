@@ -27,9 +27,9 @@ public class ContactController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetContactById(Guid id)
+    public async Task<IActionResult> GetContactByEmail(string email)
     {
-        var contact = await _contactService.GetContactByIdAsync(id);
+        var contact = await _contactService.GetContactByEmailAsync(email);
         if (contact == null)
         {
             return NotFound();
@@ -39,23 +39,23 @@ public class ContactController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddContact([FromBody] ContactDto contact)
+    public async Task<IActionResult> AddContact([FromBody] CreateContactDto contact)
     {
         await _contactService.AddContactAsync(_mapper.Map<Contact>(contact));
         return Ok();
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateContact([FromBody] ContactDto contact)
+    public async Task<IActionResult> UpdateContact([FromBody] CreateContactDto contact)
     {
         await _contactService.UpdateContactAsync(_mapper.Map<Contact>(contact));
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteContact(Guid id)
+    public async Task<IActionResult> DeleteContact(string email)
     {
-        await _contactService.DeleteContactAsync(id);
+        await _contactService.DeleteContactAsync(email);
         return Ok();
     }
 }

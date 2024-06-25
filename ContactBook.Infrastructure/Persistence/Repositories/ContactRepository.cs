@@ -18,9 +18,9 @@ public class ContactRepository : IContactRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteContactAsync(Guid id)
+    public async Task DeleteContactAsync(string email)
     {
-        var contact = await _context.Contacts.FindAsync(id);
+        var contact = await _context.Contacts.FirstOrDefaultAsync(c => c.Email == email);
         if (contact != null)
         {
             _context.Contacts.Remove(contact);
@@ -28,9 +28,9 @@ public class ContactRepository : IContactRepository
         }
     }
 
-    public async Task<Contact?> GetContactByIdAsync(Guid id)
+    public async Task<Contact?> GetContactByEmailAsync(string email)
     {
-        return await _context.Contacts.FindAsync(id);
+        return await _context.Contacts.FirstOrDefaultAsync(c => c.Email == email);
     }
 
     public async Task<IEnumerable<Contact>> GetContactsAsync()

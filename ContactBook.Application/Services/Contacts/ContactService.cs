@@ -17,9 +17,9 @@ public class ContactService : IContactService
         return await _contactRepository.GetContactsAsync();
     }
 
-    public async Task<Contact?> GetContactByIdAsync(Guid id)
+    public async Task<Contact?> GetContactByEmailAsync(string email)
     {
-        return await _contactRepository.GetContactByIdAsync(id);
+        return await _contactRepository.GetContactByEmailAsync(email);
     }
 
     public async Task AddContactAsync(Contact contact)
@@ -32,8 +32,8 @@ public class ContactService : IContactService
         await _contactRepository.UpdateContactAsync(contact);
     }
 
-    public async Task DeleteContactAsync(Guid id)
+    public async Task DeleteContactAsync(string email)
     {
-        await _contactRepository.DeleteContactAsync(id);
+        await _contactRepository.DeleteContactAsync(email);
     }
 }
