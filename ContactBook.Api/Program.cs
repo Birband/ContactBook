@@ -3,6 +3,7 @@ using ContactBook.Application.Common.Interfaces.Persistence;
 using ContactBook.Application.Services.Users;
 using ContactBook.Domain.Entities;
 using ContactBook.Infrastructure.Extensions;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,13 @@ var builder = WebApplication.CreateBuilder(args);
             });
         });
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowOrigin", 
+                builder => builder.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader());
+        });
 
     }
 }
@@ -57,6 +65,7 @@ var app = builder.Build();
         app.UseSwaggerUI();        
     }
 
+    app.UseCors("AllowOrigin");
     app.UseMiddleware<ErrorHandler>();
     app.UseHttpsRedirection();
     app.UseAuthentication();
