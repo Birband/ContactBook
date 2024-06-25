@@ -1,27 +1,40 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private tokenSubject: BehaviorSubject<string | null>;
+  public token$: Observable<string | null>;
 
-  private readonly TOKEN_KEY = 'auth_token';
-
-  constructor() {}
-
-  setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
+  constructor() {
+    const token = localStorage.getItem('token');
+    this.tokenSubject = new BehaviorSubject<string | null>(token);
+    this.token$ = this.tokenSubject.asObservable();
   }
 
+  isLoggedIn$(): Observable<boolean> {
+    return this.token$.pipe(
+      map(token => !!token)
+    );
+  }
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return this.tokenSubject.value;
   }
 
-  removeToken(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
+  setToken(token: string | null): void {
+    if (token) {
+      localStorage.setItem('token', token);
+      this.tokenSubject.next(token);
+    } else {
+      this.clearToken();
+    }
   }
 
-  isLoggedIn(): boolean {
-    return !!this.getToken();
+  clearToken(): void {
+    localStorage.removeItem('token');
+    this.tokenSubject.next(null);
   }
 }
