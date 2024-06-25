@@ -1,17 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private apiUrl = 'http://localhost:5182/api';
+  private apiUrl = 'https://localhost:5182/api';
 
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
-
-  constructor(private http: HttpClient) { }
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
 
   fetchContacts(): Observable<any> {
     return this.http.get(`${this.apiUrl}/contact/all`);
@@ -28,12 +36,12 @@ export class ApiService {
       email: contactForm.email,
       phoneNumber: contactForm.phoneNumber,
       address: contactForm.address,
-      birthday: contactForm.birthday,
+      birthDate: contactForm.birthDate,
       category: contactForm.category.name,
       subcategory: contactForm.subcategory.name,
       password: contactForm.password
     };
-    return this.http.post(`${this.apiUrl}/contact`, contact);
+    return this.http.post(`${this.apiUrl}/contact`, contact, { headers: this.getHeaders() });
   }
 
   updateContact(contactForm: any): Observable<any> {
@@ -43,16 +51,16 @@ export class ApiService {
       email: contactForm.email,
       phoneNumber: contactForm.phoneNumber,
       address: contactForm.address,
-      birthday: contactForm.birthday,
+      birthDate: contactForm.birthDate,
       category: contactForm.category.name,
       subcategory: contactForm.subcategory.name,
       password: contactForm.password
     };
-    return this.http.put(`${this.apiUrl}/contact`, contact);
+    return this.http.put(`${this.apiUrl}/contact`, contact, { headers: this.getHeaders() });
   }
 
   deleteContact(email: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/contact/${email}`);
+    return this.http.delete(`${this.apiUrl}/contact/${email}`, { headers: this.getHeaders() });
   }
 
   login(email: string, password: string): Observable<any> {
