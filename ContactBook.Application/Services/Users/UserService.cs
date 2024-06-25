@@ -36,7 +36,7 @@ public class UserService : IUserService
         }
 
         // Check if user exists
-        var user = await _userRepository.GetUserByEmailAsync(request.Email);
+        User user = await _userRepository.GetUserByEmailAsync(request.Email);
         if (user is null)
         {
             throw new Exception("User with this email does not exist");
@@ -49,12 +49,10 @@ public class UserService : IUserService
         }
 
         // Create token
-        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Username, user.Email);
+        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Email);
 
         return new UserResponseDto
         {
-            Id = user.Id,
-            Username = user.Username,
             Email = user.Email,
             Token = token
         };
@@ -85,7 +83,6 @@ public class UserService : IUserService
         // Create user
         var user = new User
         {
-            Username = request.Username,
             Email = request.Email,
             Password = request.Password
         };
@@ -106,12 +103,10 @@ public class UserService : IUserService
         user = await _userRepository.GetUserByEmailAsync(request.Email);
 
         // Create token
-        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Username, user.Email);
+        var token = _jwtTokenGenerator.GenerateToken(user.Id, user.Email);
 
         return new UserResponseDto
         {
-            Id = user.Id,
-            Username = request.Username,
             Email = request.Email,
             Token = token
         };
