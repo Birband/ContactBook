@@ -53,7 +53,7 @@
           </mat-form-field>
   
           <!-- Subcategory Field -->
-          <mat-form-field *ngIf="contactForm.get('category')?.value != null">
+          <mat-form-field *ngIf="contactForm.get('category')?.value != null && contactForm.get('category')?.value.subcategories.length > 0">
             <mat-label>Subcategory</mat-label>
             <mat-select formControlName="subcategory">
                 <mat-option *ngFor="let subcategory of contactForm.get('category')?.value.subcategories" [value]="subcategory">
@@ -63,7 +63,7 @@
           </mat-form-field>
   
           <!-- Optional: If no subcategories available -->
-          <mat-form-field *ngIf="contactForm.get('category')?.value != null && contactForm.get('category')?.value.subcategories.length === 0">
+          <mat-form-field *ngIf="contactForm.get('category')?.value != null && contactForm.get('category')?.value.subcategories.length == 0">
             <mat-label>Subcategory</mat-label>
             <input matInput formControlName="subcategory" required>
           </mat-form-field>

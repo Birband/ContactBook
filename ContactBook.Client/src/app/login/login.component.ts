@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api/api.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,13 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService,
+              private authService: AuthService,
+              private router: Router) {}
 
   login() {
     this.apiService.login(this.email, this.password).subscribe((response) => {
-      localStorage.setItem('token', response.token);
+      this.authService.setToken(response.token);
       this.router.navigate(['/contacts']);
     },
     (error) => {

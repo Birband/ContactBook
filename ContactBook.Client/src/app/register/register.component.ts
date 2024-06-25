@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api/api.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,11 +14,13 @@ export class RegisterComponent {
   confirmPassword: string = '';
   errorMessage: string[] = [];
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, 
+              private authService: AuthService,
+              private router: Router) {}
 
   register() {
     this.apiService.register(this.email, this.password, this.confirmPassword).subscribe((response) => {
-      // localStorage.setItem('token', response.token);
+      this.authService.setToken(response.token);
       this.router.navigate(['/login']);
     },
     (error) => {
