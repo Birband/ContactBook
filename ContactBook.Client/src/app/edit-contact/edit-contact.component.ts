@@ -39,7 +39,7 @@ export class EditContactComponent implements OnInit {
       birthDate: ['', Validators.required],
       category: [null, Validators.required],
       subcategory: [''],
-      password: ['', Validators.required] // For updating password
+      password: [''] // For updating password
     });
   }
 

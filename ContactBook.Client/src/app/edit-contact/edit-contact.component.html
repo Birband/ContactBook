@@ -70,8 +70,8 @@
   
           <!-- Password Field (for updating password) -->
           <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input matInput formControlName="password" required type="password">
+            <mat-label>Password (Leave empty if not changing)</mat-label>
+            <input matInput formControlName="password" type="password">
             <mat-error *ngIf="contactForm.get('password')?.hasError('required')">
               Password is required
             </mat-error>
