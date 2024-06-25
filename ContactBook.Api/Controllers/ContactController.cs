@@ -26,7 +26,7 @@ public class ContactController : ControllerBase
         return Ok(contacts);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{email}")]
     public async Task<IActionResult> GetContactByEmail(string email)
     {
         var contact = await _contactService.GetContactByEmailAsync(email);
@@ -52,7 +52,7 @@ public class ContactController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{email}")]
     public async Task<IActionResult> DeleteContact(string email)
     {
         await _contactService.DeleteContactAsync(email);
