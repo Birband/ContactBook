@@ -15,6 +15,7 @@ import { ContactDetailComponent } from './contact-detail/contact-detail.componen
 import { NewContactComponent } from './new-contact/new-contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     LoginComponent,
     RegisterComponent,
     ContactDetailComponent,
-    NewContactComponent
+    NewContactComponent,
+    EditContactComponent
   ],
   imports: [
     BrowserModule,

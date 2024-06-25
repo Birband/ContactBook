@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { NewContactComponent } from './new-contact/new-contact.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 
 const routes: Routes = [
   { path: 'contacts', component: ContactsComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'contact/:email', component: ContactDetailComponent },
   { path: 'new-contact', component: NewContactComponent },
+  { path: 'edit-contact/:email', component: EditContactComponent },
   { path: '', redirectTo: '/contacts', pathMatch: 'full' }
 ];
 

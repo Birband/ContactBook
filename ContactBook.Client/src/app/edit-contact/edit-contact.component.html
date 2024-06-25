@@ -1,0 +1,87 @@
+<div class="edit-contact-container">
+    <mat-card>
+      <mat-card-title>Edit Contact</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          
+          <!-- FirstName Field -->
+          <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
+            <mat-error *ngIf="contactForm.get('firstName')?.hasError('required')">
+              First Name is required
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- LastName Field -->
+          <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
+            <mat-error *ngIf="contactForm.get('lastName')?.hasError('required')">
+              Last Name is required
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Phone Number Field -->
+          <mat-form-field class="full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber" required>
+            <mat-error *ngIf="contactForm.get('phoneNumber')?.hasError('required')">
+              Phone Number is required
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Birth Date Field -->
+          <mat-form-field class="full-width">
+            <mat-label>Birth Date</mat-label>
+            <input matInput formControlName="birthDate" [matDatepicker]="picker" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="contactForm.get('birthDate')?.hasError('required')">
+              Birth Date is required
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Category Field -->
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <!-- Subcategory Field -->
+          <mat-form-field *ngIf="contactForm.get('category')?.value != null">
+            <mat-label>Subcategory</mat-label>
+            <mat-select formControlName="subcategory">
+                <mat-option *ngFor="let subcategory of contactForm.get('category')?.value.subcategories" [value]="subcategory">
+                    {{ subcategory.name }}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <!-- Optional: If no subcategories available -->
+          <mat-form-field *ngIf="contactForm.get('category')?.value != null && contactForm.get('category')?.value.subcategories.length === 0">
+            <mat-label>Subcategory</mat-label>
+            <input matInput formControlName="subcategory" required>
+          </mat-form-field>
+  
+          <!-- Password Field (for updating password) -->
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" required type="password">
+            <mat-error *ngIf="contactForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+  
+          <div class="button-group">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid">Save Changes</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
