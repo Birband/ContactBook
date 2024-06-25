@@ -13,7 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { NewContactComponent } from './new-contact/new-contact.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { NewContactComponent } from './new-contact/new-contact.component';
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
