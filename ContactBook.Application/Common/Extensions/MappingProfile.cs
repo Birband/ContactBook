@@ -13,6 +13,11 @@ public class MappingProfile : Profile
 
         CreateMap<Contact, ContactDto>().ReverseMap();
 
+        // CreateContact mapping
+        CreateMap<CreateContactDto, Contact>().ReverseMap();
+
+        CreateMap<CreateContactDto, Contact>().ReverseMap();
+
         // Category mapping
         CreateMap<Category, CategoryDto>().ReverseMap();
 
