@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../services/api/api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ContactsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchContacts();
@@ -33,5 +34,9 @@ export class ContactsComponent implements OnInit {
     (error) => {
       console.error('Error fetching contacts: ', error);
     });
+  }
+
+  viewContactDetail(email: string): void {
+    this.router.navigate(['/contact', email]);
   }
 }
